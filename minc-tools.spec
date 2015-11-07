@@ -20,6 +20,9 @@ images.
 
 %prep
 %autosetup -n %{name}-%{name}-%{upver}
+# we're installing mans to /usr/share/man instead of /usr/man
+sed -i -e '/^INSTALL_MAN_PAGES/s/\${CMAKE_INSTALL_PREFIX}\/man/\${CMAKE_INSTALL_PREFIX}\/share\/man/' \
+  progs/CMakeLists.txt conversion/CMakeLists.txt
 rm -rf build/
 mkdir -p build/
 
